@@ -21,7 +21,9 @@ imkdir(
 )
 }
 \arguments{
-\item{logical_path}{Destination path.}
+\item{logical_path}{Destination path in iRODS.
+By default, the basename of \code{local_path} is used and the file is
+stored in the current working directory (see \code{ipwd()}).}
 
 \item{trash}{Send to trash or delete permanently (default = TRUE).}
 
@@ -31,7 +33,7 @@ imkdir(
 \item{unregister}{Unregister data objects instead of deleting them
 (default = FALSE).}
 
-\item{verbose}{Show information about the http request and response.}
+\item{verbose}{Whether to print information about the HTTP request and response.}
 
 \item{collection}{Indicates that a collection is being created (defaults to
 TRUE).}
