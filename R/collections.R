@@ -8,8 +8,6 @@
 #' @param recursive If a collection is provided, whether its contents should also be
 #'    removed. If a collection is not empty and `recursive` is `FALSE`, it cannot
 #'    be deleted.
-#' @param unregister Whether data objects should be unregistered rather than deleted.
-#'    Currently not implemented.
 #' @param verbose Whether information should be printed about the HTTP request and response.
 #'
 #' @return Invisibly the HTTP call.
@@ -36,7 +34,7 @@
 #' irm("foo.rds", trash = FALSE)
 #' iquery("SELECT COLL_NAME, DATA_NAME WHERE DATA_NAME LIKE 'foo%'")
 #' }
-irm <- function(logical_path, force = TRUE, recursive = FALSE, unregister = FALSE,
+irm <- function(logical_path, force = TRUE, recursive = FALSE,
                 verbose = FALSE) {
 
   # expand logical path to absolute logical path
