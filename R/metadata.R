@@ -75,6 +75,10 @@ imeta <- function(
   entity_type <- match.arg(entity_type)
 
   # check list depth if 1 add another layer
+  # TODO make a different check:
+  # operations should ALWAYS be a list of lists
+  # and those lists should have the right names inside.
+  # list of list => also a dataframe should be allowed
   if (list_depth(operations) == 1)
     operations <- list(operations)
 

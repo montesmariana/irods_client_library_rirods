@@ -84,6 +84,9 @@ irm <- function(logical_path, force = TRUE, recursive = FALSE,
 #' }
 imkdir <- function(logical_path, collection = TRUE,
                    create_parent_collections = FALSE, verbose = FALSE) {
+  # NOTE this function will be made into an internal function create_item()
+  # Then `imkdir()` will call this function with collection = TRUE
+  # and `itouch()` will call this function with collection = FALSE and create_parent_collections = FALSE
 
   # expand logical path to absolute logical path
   logical_path <- get_absolute_lpath(logical_path)
