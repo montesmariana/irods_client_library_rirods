@@ -33,11 +33,8 @@ get_absolute_lpath <- function(lpath, write = FALSE, safely = TRUE) {
   }
 
   if (isTRUE(safely)) {
-    if (isTRUE(write)) {
-      is_lpath <- lpath_exists(strsplit(ipwd(), lpath)[[1]])
-    } else {
-      is_lpath <- lpath_exists(lpath)
-    }
+    path_to_check <- if (isTRUE(write)) strsplit(ipwd(), lpath)[[1]] else lpath
+    is_lpath <- lpath_exists(path_to_check, write=TRUE) # with write=FALSE we have a loop
     if (!is_lpath) {
       stop("Logical path [", lpath,"] is not accessible.", call. = FALSE)
     }
