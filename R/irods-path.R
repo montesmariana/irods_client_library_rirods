@@ -1,23 +1,28 @@
-make_irods_base_path <- function() {
-  check_irods_conf()
-  if (!is.null(find_irods_file("irods_zone"))) {
-    if (.rirods$user_role == "rodsuser") {
-      paste0("/", find_irods_file("irods_zone"), "/home/", .rirods$user)
-    } else if (.rirods$user_role == "groupadmin") {
-      paste0("/", find_irods_file("irods_zone"), "/home")
-    } else if (.rirods$user_role == "rodsadmin") {
-      paste0("/", find_irods_file("irods_zone"))
-    } else {
-      stop("User role unknown.", call. = FALSE)
-    }
+make_irods_home <- function() {
+  irods_home <- find_irods_file("irods_home")
+  zone <- make_irods_base_path()
 
+  if (length(irods_home) == 0) {
+    return(zone)
+  }
+
+  if (!startsWith(irods_home, zone)) {
+    irods_home <- paste0(zone, gsub("^/?(.+)/?", "/\\1", irods_home))
+  }
+
+  if (lpath_exists(irods_home)) {
+    irods_home
   } else {
-    stop("iRODS zone unknown.", call. = FALSE)
+    warning(sprintf("%s does not exist, defaulting to %s", irods_home, base_home))
+    zone
   }
 }
 
-get_absolute_lpath <- function(lpath, write = FALSE, safely = TRUE) {
+make_irods_base_path <- function() {
+  sprintf("/%s/home", .rirods$zone)
+}
 
+get_absolute_lpath <- function(lpath, write = FALSE, safely = TRUE) {
   if (!grepl("^/" , lpath)) {
     # default zone_path writable by user
     zpath <- ipwd()
