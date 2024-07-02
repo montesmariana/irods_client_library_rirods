@@ -85,7 +85,7 @@ lpath_exists <- function(lpath, write = FALSE) {
   if (!is_connected_irods()) stop("Not connected to iRODS.", call. = FALSE)
 
   # reference paths
-  all_lpaths <- ils(make_irods_base_path(), recurse = 1) |>
+  all_lpaths <- ils(make_irods_base_path(), recurse = 1, limit=NULL) |>
     as.data.frame() |>
     rbind(make_irods_base_path())
 
