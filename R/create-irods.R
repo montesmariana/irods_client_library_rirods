@@ -9,7 +9,7 @@
 #' it follows platform conventions (see also [rappdirs::user_config_dir()]).
 #'
 #' @param host URL of host.
-#' @param irods_home Path to the initial working directory. Once the user is authenticated,
+#' @param irods_home Path to the initial working collection. Once the user is authenticated,
 #'   if no other absolute or relative path has been requested here, it will default
 #'   to `/zoneName/home`.
 #' @param zone_path Deprecated

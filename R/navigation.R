@@ -1,12 +1,12 @@
-#' Get or Set Current Working Directory in iRODS
+#' Get or Set Current Working Directory (Collection) in iRODS
 #'
 #' `ipwd()` and `icd()` are the iRODS equivalents of [getwd()] and [setwd()]
 #' respectively. For example, whereas `getwd()` returns the current working directory
-#' in the local system, `ipwd()` returns the current working directory in iRODS.
+#' in the local system, `ipwd()` returns the current working collection in iRODS.
 #'
-#' @param dir Collection to set as working directory.
+#' @param dir Path to set as working collection.
 #'
-#' @return Invisibly the current directory before the change (same convention as
+#' @return Invisibly the current collection before the change (same convention as
 #'  `setwd()`).
 #' @seealso
 #'  [setwd()] and [getwd()] for R equivalents,
