@@ -222,8 +222,15 @@ ils <- function(
 
   irods_zone_overview <- data.frame(logical_path = lpaths)
 
-  if (isTRUE(stat)) {
+  if (isTRUE(stat) | isTRUE(permissions)) {
     ils_stat_dataframe <- make_ils_stat(irods_zone_overview$logical_path)
+    if (isFALSE(stat)) {
+      permissions_columns <- names(ils_stat_dataframe)[grepl("permission", names(ils_stat_dataframe))]
+      if ("inheritance_enabled" %in% names(ils_stat_dataframe)) {
+        permissions_columns <- c(permissions_columns, "inheritance_enabled")
+      }
+      ils_stat_dataframe <- ils_stat_dataframe[permissions_columns]
+    }
     irods_zone_overview <- cbind(irods_zone_overview, ils_stat_dataframe)
   }
 
